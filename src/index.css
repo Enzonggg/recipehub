@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-base-100 text-base-content;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(250, 239, 210, 0.3), rgba(255, 255, 255, 0.9));
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .grain-bg {
+    background-image: radial-gradient(circle at 1px 1px, rgb(180 150 109 / 0.25) 1px, transparent 0);
+    background-size: 18px 18px;
+  }
+
+  .auth-split-shell {
+    @apply overflow-hidden rounded-3xl border border-base-300 bg-base-100 shadow-sm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    animation: authFadeIn 360ms ease;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .auth-split-shell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px hsl(var(--n) / 0.12);
+  }
+
+  .auth-page-center {
+    min-height: calc(100vh - 2rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .auth-visual {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 340px;
+  }
+
+  .auth-overlay {
+    @apply flex h-full w-full flex-col justify-end p-8 text-white;
+  }
+
+  .auth-kicker {
+    @apply text-xs font-bold uppercase tracking-[0.2em] opacity-85;
+  }
+
+  .auth-role {
+    @apply mt-2 text-4xl;
+  }
+
+  .auth-subtext {
+    @apply mt-3 max-w-sm text-sm opacity-90;
+  }
+
+  .auth-form-panel {
+    @apply grid place-items-center p-6 md:p-8;
+  }
+
+  .auth-form-panel > div {
+    width: 100%;
+  }
+
+  .panel-shell {
+    min-height: 100vh;
+  }
+
+  .role-main-shell {
+    @apply w-full px-4 py-8 md:px-8;
+  }
+
+  .role-shell {
+    @apply w-full bg-transparent p-0;
+  }
+
+  .role-head {
+    @apply flex flex-wrap items-start justify-between gap-4 rounded-2xl border border-base-300 bg-base-100 p-5 shadow-sm;
+  }
+
+  .role-brand {
+    @apply text-3xl;
+  }
+
+  .role-subtitle {
+    @apply mt-1 text-xs font-semibold uppercase tracking-[0.18em] opacity-70;
+  }
+
+  .role-head-actions {
+    @apply flex flex-wrap items-center gap-2;
+  }
+
+  .role-welcome {
+    @apply mr-1 text-sm font-semibold opacity-80;
+  }
+
+  .role-nav {
+    @apply mt-4 flex flex-wrap gap-2;
+  }
+
+  .role-nav-link {
+    @apply btn btn-ghost btn-sm;
+  }
+
+  .role-nav-link.active {
+    @apply btn-primary;
+  }
+
+  .role-content {
+    @apply mt-6;
+  }
+
+  .panel-section {
+    @apply w-full;
+  }
+
+  .panel-title {
+    @apply mb-1 text-4xl font-bold;
+  }
+
+  .panel-card {
+    @apply rounded-2xl border border-base-300 bg-base-100 shadow-sm;
+  }
+
+  .admin-panel .role-main-shell {
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(34, 197, 94, 0.18), transparent 60%),
+      radial-gradient(1000px 450px at 95% -20%, rgba(14, 165, 233, 0.16), transparent 55%),
+      hsl(var(--b1));
+  }
+
+  .admin-panel .panel-card {
+    background: hsl(var(--b1) / 0.92);
+    backdrop-filter: blur(3px);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .admin-panel .panel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px hsl(var(--n) / 0.12);
+    border-color: hsl(var(--p) / 0.4);
+  }
+
+  .admin-panel .role-nav-link.active {
+    background: linear-gradient(90deg, hsl(var(--p)), hsl(var(--s)));
+    color: hsl(var(--p-content));
+  }
+
+  .admin-panel .role-content > * {
+    animation: panelFadeIn 260ms ease;
+  }
+
+  .customer-panel .role-main-shell {
+    background:
+      radial-gradient(1200px 520px at 8% -12%, rgba(16, 185, 129, 0.16), transparent 60%),
+      radial-gradient(1000px 520px at 100% -18%, rgba(59, 130, 246, 0.14), transparent 55%),
+      hsl(var(--b1));
+  }
+
+  .customer-panel .panel-card {
+    transition: transform 170ms ease, box-shadow 170ms ease;
+  }
+
+  .customer-panel .panel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px hsl(var(--n) / 0.09);
+  }
+
+  .customer-panel .role-nav-link.active {
+    @apply btn-secondary;
+  }
+
+  .staff-panel .role-main-shell {
+    background:
+      radial-gradient(950px 430px at 16% -12%, rgba(14, 165, 233, 0.14), transparent 58%),
+      radial-gradient(900px 420px at 95% -20%, rgba(168, 85, 247, 0.14), transparent 56%),
+      hsl(var(--b1));
+  }
+
+  .staff-panel .panel-card {
+    transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+  }
+
+  .staff-panel .panel-card:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--info) / 0.32);
+    box-shadow: 0 12px 28px hsl(var(--n) / 0.12);
+  }
+
+  .staff-panel .role-nav-link.active {
+    @apply btn-info;
+  }
+
+  .admin-panel .panel-table tbody tr {
+    transition: background-color 160ms ease;
+  }
+
+  .admin-panel .panel-table tbody tr:hover {
+    background: hsl(var(--p) / 0.08);
+  }
+
+  .panel-input {
+    @apply input input-bordered w-full;
+  }
+
+  .panel-btn {
+    @apply btn btn-sm;
+  }
+
+  .panel-btn-primary {
+    @apply btn-primary;
+  }
+
+  .panel-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .panel-table th,
+  .panel-table td {
+    border: 1px solid hsl(var(--b3));
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.95rem;
+  }
+
+  .panel-table th {
+    background: hsl(var(--b2));
+    font-weight: 700;
+  }
+
+  .recipe-card {
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .recipe-card-image {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+  }
+
+  .recipe-card-body {
+    @apply p-4 text-center;
+  }
+
+  .recipe-card-body h2 {
+    @apply text-2xl font-bold underline;
+  }
+
+  .recipe-card-body p {
+    @apply mt-1 text-sm italic opacity-70;
+  }
+
+  @media (max-width: 960px) {
+    .auth-split-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .role-head {
+      @apply flex-col items-start;
+    }
+    .role-main-shell {
+      @apply px-3 py-6;
+    }
+
+    .role-brand {
+      @apply text-2xl;
+    }
+
+    .panel-title {
+      @apply text-3xl;
+    }
+
+    .panel-table th,
+    .panel-table td {
+      padding: 8px 10px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+@keyframes panelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes authFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
